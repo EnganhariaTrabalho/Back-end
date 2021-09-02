@@ -1,3 +1,5 @@
+use es1;
+
 -- phpMyAdmin SQL Dump
 -- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
@@ -35,7 +37,7 @@ CREATE TABLE `aluno` (
   `senha` varchar(255) NOT NULL,
   `nome_usuario` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'ALUNO'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `aluno`
@@ -62,7 +64,7 @@ CREATE TABLE `coordenadoria` (
   `nome_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'COORDENADOR'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `coordenadoria`
@@ -80,9 +82,9 @@ INSERT INTO `coordenadoria` (`numero_usp`, `nome`, `email`, `nome_usuario`, `sen
 CREATE TABLE `informacao_aluno` (
   `numero_usp_aluno` int NOT NULL,
   `numero_usp_professor` int NOT NULL,
-  `lattes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `lattes` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `curso` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `informacao_aluno`
@@ -104,7 +106,7 @@ CREATE TABLE `professor` (
   `nome_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'PROFESSOR'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `professor`
@@ -114,30 +116,30 @@ INSERT INTO `professor` (`numero_usp`, `nome`, `email`, `nome_usuario`, `senha`,
 (333333333, 'nicolas matias', 'nicolas@ejsom.br', 'ncsmatias', '123', 'PROFESSOR');
 
 --
--- √çndices de tabelas apagadas
+-- √?ndices de tabelas apagadas
 --
 
 --
--- √çndices de tabela `aluno`
+-- √?ndices de tabela `aluno`
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`numero_usp`);
 
 --
--- √çndices de tabela `coordenadoria`
+-- √?ndices de tabela `coordenadoria`
 --
 ALTER TABLE `coordenadoria`
   ADD PRIMARY KEY (`numero_usp`);
 
 --
--- √çndices de tabela `informacao_aluno`
+-- √?ndices de tabela `informacao_aluno`
 --
 ALTER TABLE `informacao_aluno`
   ADD KEY `numero_usp_aluno` (`numero_usp_aluno`),
   ADD KEY `numero_usp_professor` (`numero_usp_professor`);
 
 --
--- √çndices de tabela `professor`
+-- √?ndices de tabela `professor`
 --
 ALTER TABLE `professor`
   ADD PRIMARY KEY (`numero_usp`);
