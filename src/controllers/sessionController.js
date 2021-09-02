@@ -15,11 +15,11 @@ class SessionController {
       else if (req.body.nivel === 'professor') {
         user = await professorModel.getByEmail(req.body.email);
       }
-      else {
+      else if(req.body.nivel === 'coordenadoria') {
         user = await coordenadoriaModel.getByEmail(req.body.email);
       }
 
-      if(!user){
+      if(user.length === 0){
         return res.status(401).json({ error: 'User not found'});
       }
 

@@ -11,8 +11,8 @@ module.exports = {
         return queryExecuter(connection, "SELECT * FROM coordenadoria", [])
     },  
 
-    getById(id) {
-        return queryExecuter(connection, "SELECT * FROM coordenadoria WHERE id = ?", [id])
+    getByPK(numero_usp) {
+        return queryExecuter(connection, "SELECT * FROM coordenadoria WHERE numero_usp = ?", [numero_usp])
     },
 
     getByEmail(email) {
@@ -20,9 +20,9 @@ module.exports = {
         return queryExecuter(connection, "SELECT * FROM coordenadoria WHERE email = ?", [email])
     },
 
-    delete(id) {
+    delete(numero_usp) {
         try {
-            return queryExecuter(connection, "DELETE FROM coordenadoria WHERE id = ?", [id]);
+            return queryExecuter(connection, "DELETE FROM coordenadoria WHERE numero_usp = ?", [numero_usp]);
         } catch(e) {
             throw e;
         }

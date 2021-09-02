@@ -10,17 +10,17 @@ module.exports = {
         return queryExecuter(connection, "SELECT * FROM aluno", [])
     },  
 
-    getById(id) {
-        return queryExecuter(connection, "SELECT * FROM aluno WHERE id = ?", [id])
+    getByPK(numero_usp) {
+        return queryExecuter(connection, "SELECT * FROM aluno WHERE numero_usp = ?", [numero_usp])
     },
 
     getByEmail(email) {
         return queryExecuter(connection, "SELECT * FROM aluno WHERE email = ?", [email])
     },
 
-    delete(id) {
+    delete(numero_usp) {
         try {
-            return queryExecuter(connection, "DELETE FROM aluno WHERE id = ?", [id]);
+            return queryExecuter(connection, "DELETE FROM aluno WHERE numero_usp = ?", [numero_usp]);
         } catch(e) {
             throw e;
         }

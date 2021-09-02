@@ -3,7 +3,6 @@ const queryExecuter = require('../helpers/queryExecuter');
 
 module.exports = {
     insert({nome_usuario, email, senha, nome, numero_usp, nivel}) { 
-        console.log(nome_usuario)
         return queryExecuter(connection, "INSERT INTO professor (nome_usuario, email, senha, nome, numero_usp, nivel) VALUES (?, ?, ?, ?, ?, ?)", [nome_usuario, email, senha, nome, numero_usp, nivel])
     },
 
@@ -11,18 +10,17 @@ module.exports = {
         return queryExecuter(connection, "SELECT * FROM professor", [])
     },  
 
-    getById(id) {
-        return queryExecuter(connection, "SELECT * FROM professor WHERE id = ?", [id])
+    getByPK(numero_usp) {
+        return queryExecuter(connection, "SELECT * FROM professor WHERE numero_usp = ?", [numero_usp])
     },
 
     getByEmail(email) {
-        console.log(email);
         return queryExecuter(connection, "SELECT * FROM professor WHERE email = ?", [email])
     },
 
-    delete(id) {
+    delete(numero_usp) {
         try {
-            return queryExecuter(connection, "DELETE FROM professor WHERE id = ?", [id]);
+            return queryExecuter(connection, "DELETE FROM professor WHERE numero_usp = ?", [numero_usp]);
         } catch(e) {
             throw e;
         }
