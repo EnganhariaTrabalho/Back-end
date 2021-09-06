@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 06/09/2021 às 16:46
+-- Tempo de geração: 06/09/2021 às 18:03
 -- Versão do servidor: 8.0.26-0ubuntu0.20.04.2
 -- Versão do PHP: 7.4.3
 
@@ -86,8 +86,9 @@ CREATE TABLE `formulario` (
   `numero_usp_aluno` int NOT NULL,
   `numero_usp_professor` int NOT NULL,
   `numero_usp_coordenadoria` int DEFAULT NULL,
+  `semestre_curso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `ultima_atualizacao_do_lattes` date NOT NULL COMMENT 'Data da última atualização do lattes',
-  `ultima_avaliação` date NOT NULL COMMENT 'Qual foi o resultado da avaliação do seu último relatório?',
+  `resultado_ultima_avaliação` varchar(255) NOT NULL COMMENT 'Qual foi o resultado da avaliação do seu último relatório?',
   `aprovação_obrigatorias` int NOT NULL COMMENT 'Em quantas disciplinas obrigatórias você já obteve aprovação?',
   `aprovação_optativas` int NOT NULL COMMENT 'Em quantas disciplinas optativas você já obteve aprovação?',
   `conceitos` varchar(255) NOT NULL COMMENT 'Todos os conceitos em disciplinas cursadas no último semestre já foram divulgados?',
@@ -108,6 +109,13 @@ CREATE TABLE `formulario` (
   `comentario_orientador` text COMMENT 'Comentários finais do ORIENTANDO sobre seu desempenho no último semestre, considerando o relatório reapresentado:',
   `comentario_coordenadoria` text COMMENT 'Comentários finais do COORDENADORIA sobre seu desempenho no último semestre, considerando o relatório reapresentado:'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `formulario`
+--
+
+INSERT INTO `formulario` (`cod_formulario`, `numero_usp_aluno`, `numero_usp_professor`, `numero_usp_coordenadoria`, `semestre_curso`, `ultima_atualizacao_do_lattes`, `resultado_ultima_avaliação`, `aprovação_obrigatorias`, `aprovação_optativas`, `conceitos`, `disciplinas_repovadas_curso`, `disciplinas_repovadas_semestre`, `exame_proeficiencia`, `exame_de_qualificacao`, `limite_max_qualificacao`, `tempo_limete_deposito`, `artigos_publicados`, `artigos_espera`, `artigo_preparacao`, `estagio_atual_pesquisa`, `congresso`, `congresso_extorior`, `pesquisa_exterior`, `declaracao`, `comentario_orientador`, `comentario_coordenadoria`) VALUES
+(1223333, 101, 333333333, NULL, '2', '2010-09-20', 'aprovado', 10, 12, 'conceito', 10, 10, 'sim', 'nao', 'sim', '12', 2, 12, '222', 'aasasasassaasasasasasasassdfafsdf', 'skdhakjdnscmaskcnaskcbalkjaslcjkbaslcbALCN', 'KXKASHDKASJDKASJDASJDHASKJDASDAS', 'lksjaoshdoaskdsakjdsdjkadskjhaskdasd', 'sakdnoasihdlasdhkasjkjsdsjdas', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,6 +223,16 @@ ALTER TABLE `status`
   ADD KEY `fk_formulario_info_status` (`cod_formulario`);
 
 --
+-- AUTO_INCREMENT de tabelas apagadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `formulario`
+--
+ALTER TABLE `formulario`
+  MODIFY `cod_formulario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1223334;
+
+--
 -- Restrições para dumps de tabelas
 --
 
@@ -237,7 +255,7 @@ ALTER TABLE `informacao_aluno`
 -- Restrições para tabelas `status`
 --
 ALTER TABLE `status`
-  ADD CONSTRAINT `fk_formulario_info_status` FOREIGN KEY (`cod_formulario`) REFERENCES `formulario` (`cod_formulario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_formulario_info_status` FOREIGN KEY (`cod_formulario`) REFERENCES `formulario` (`cod_formulario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

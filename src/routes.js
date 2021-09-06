@@ -14,7 +14,7 @@ routes.get('/aluno' , alunoController.index);
 //routes.get('/usersid',sessionMiddlware.auth, usersController.getById);
 
 
-//routes.post('/formularios',sessionMiddlware.auth, FormularioController.store);
+routes.post('/formularios', FormularioController.store);
 //routes.get('/formularios',sessionMiddlware.auth, FormularioController.getAll);
 
 module.exports = routes;

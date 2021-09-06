@@ -3,15 +3,31 @@ const queryExecuter = require('../helpers/queryExecuter');
 
 
 module.exports = {
-    insert(id_coordenador, tipo_curso, semestre, aprovacao_grad, aprovacao_opt, conceitos, reprova_total, reprova_ultimo_semestre, aprova_proef, exame_quali, limite_quali, limite_tese, artigos_aceito, artigos_aguardando, estagio_artigo_submissao, estagio_pesquisa, participou_congresso_nacional,participou_congresso_exterior,participou_pesquisa_exterior,algo_declarar, id_aluno) {
-        const query  = "INSERT INTO informacoes_aluno";
-        query +="(id_coordenador, tipo_curso, semestre, aprovacao_grad, aprovacao_opt, conceitos, reprova_total, reprova_ultimo_semestre, "
-            "aprova_proef, exame_quali, limite_quali, limite_tese, artigos_aceito, artigos_aguardando, estagio_artigo_submissao, estagio_pesquisa, "
-            "participou_congreso_nacional, participou_congresso_exterior, participou_pesquisa_exterior, algo_declarar, id_aluno) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        return queryExecuter(connection, 
-            query, 
-            [id_coordenador, tipo_curso, semestre, aprovacao_grad, aprovacao_opt, conceitos, reprova_total, reprova_ultimo_semestre, aprova_proef, exame_quali, limite_quali, limite_tese, artigos_aceito, artigos_aguardando, estagio_artigo_submissao, estagio_pesquisa, participou_congresso_nacional,participou_congresso_exterior,participou_pesquisa_exterior,algo_declarar, id_aluno])
+    insert({cod_formulario, numero_usp_aluno, numero_usp_professor, 
+        semestre_curso, ultima_atualizacao_do_lattes, resultado_ultima_avaliação, aprovação_obrigatorias, 
+        aprovação_optativas, conceitos, disciplinas_repovadas_curso, disciplinas_repovadas_semestre, 
+        exame_proeficiencia, exame_de_qualificacao, limite_max_qualificacao, tempo_limete_deposito, 
+        artigos_publicados, artigos_espera, artigo_preparacao, estagio_atual_pesquisa, congresso, 
+        congresso_extorior, pesquisa_exterior, declaracao}) {
+
+        let query  = "INSERT INTO formulario";
+        query +=" (cod_formulario, numero_usp_aluno, numero_usp_professor, semestre_curso," + 
+                   "ultima_atualizacao_do_lattes, resultado_ultima_avaliação, aprovação_obrigatorias, aprovação_optativas," + 
+                   "conceitos, disciplinas_repovadas_curso, disciplinas_repovadas_semestre, exame_proeficiencia," + 
+                   "exame_de_qualificacao,limite_max_qualificacao, tempo_limete_deposito, artigos_publicados, artigos_espera," + 
+                   "artigo_preparacao, estagio_atual_pesquisa,congresso ,congresso_extorior, pesquisa_exterior, declaracao)" + 
+                   "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+            console.log(query);
+
+        return queryExecuter(connection, query, [
+            cod_formulario, numero_usp_aluno, numero_usp_professor, 
+        semestre_curso, ultima_atualizacao_do_lattes, resultado_ultima_avaliação, aprovação_obrigatorias, 
+        aprovação_optativas, conceitos, disciplinas_repovadas_curso, disciplinas_repovadas_semestre, 
+        exame_proeficiencia, exame_de_qualificacao, limite_max_qualificacao, tempo_limete_deposito, 
+        artigos_publicados, artigos_espera, artigo_preparacao, estagio_atual_pesquisa, congresso, 
+        congresso_extorior, pesquisa_exterior, declaracao 
+        ]);
     },
 
     getAll() {
