@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 05/09/2021 às 16:20
+-- Tempo de geração: 06/09/2021 às 16:46
 -- Versão do servidor: 8.0.26-0ubuntu0.20.04.2
 -- Versão do PHP: 7.4.3
 
@@ -165,6 +165,7 @@ CREATE TABLE `status` (
   `cod_status` int NOT NULL,
   `cod_formulario` int NOT NULL,
   `status` varchar(255) NOT NULL,
+  `data` date NOT NULL,
   `avaliacao_professor` varchar(255) DEFAULT NULL,
   `avaliacao_coordenadoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
