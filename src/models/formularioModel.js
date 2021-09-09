@@ -18,7 +18,7 @@ module.exports = {
                    "artigo_preparacao, estagio_atual_pesquisa,congresso ,congresso_extorior, pesquisa_exterior, declaracao)" + 
                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-            console.log(query);
+        console.log(query);
 
         return queryExecuter(connection, query, [
             cod_formulario, numero_usp_aluno, numero_usp_professor, 
