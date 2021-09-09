@@ -10,8 +10,8 @@ module.exports = {
     return queryExecuter(connection, "SELECT * FROM informacao_aluno", [])
   },
 
-  getById(id) {
-    return queryExecuter(connection, "SELECT * FROM informacao_aluno WHERE id = ?", [id])
+  getProfessor(numero_usp) {
+    return queryExecuter(connection, "SELECT numero_usp_professor FROM informacao_aluno WHERE numero_usp_aluno = ?", [numero_usp])
   }
 
 }
