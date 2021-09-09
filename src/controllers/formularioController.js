@@ -1,4 +1,4 @@
-const { isCoordinator } = require('../config/level');
+const { isCoordinator, isProfessor, isStudent } = require('../config/level');
 const { customAlphabet } = require('nanoid');
 const Forms = require('../models/formularioModel');
 const StudentInfo = require('../models/alunoInfosModel');
@@ -24,9 +24,35 @@ class FormsController {
     }
   }
 
-  async get(req, res) {
+  async getStudent(req, res) {
     try {
-      const getForms = await Forms.getById(req.params.id)
+
+      if(!isStudent(req.userLevel)) {
+        return res.status(403).json({ msg: 'forbidden' });
+      }
+
+      const getForms = await Forms.getStudent(req.userID);
+
+      if(!getForms) {
+        return res.status(400).json({ msg: 'Forms dosent exists' });
+      }
+
+      return res.status(200).json(getForms);
+      
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ msg: 'internal server error' });
+    }
+  }
+
+  async getProfessor(req, res) {
+    try {
+
+      if(!isProfessor(req.userLevel)) {
+        return res.status(403).json({ msg: 'forbidden' });
+      }
+
+      const getForms = await Forms.getProfessor(req.userID);
 
       if(!getForms) {
         return res.status(400).json({ msg: 'Forms dosent exists' });
@@ -55,6 +81,24 @@ class FormsController {
       console.log(error);
       return res.status(500).json({ msg: 'internal server error' });
     }
+  }
+
+  async delete(req, res) {
+     try {
+
+      const forms_cod = req.params.id;
+
+      if(!isCoordinator(req.userLevel)) {
+        return res.status(403).json({ msg: 'forbidden' });
+      }
+
+      await Forms.delete(forms_cod);
+
+      return res.status(200).json({ msg: 'forms deleted' });
+
+     } catch (error) {
+       
+     }
   }
 }
 
