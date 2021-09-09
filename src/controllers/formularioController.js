@@ -13,8 +13,10 @@ class FormsController {
       const numero_usp_professor = professor[0].numero_usp_professor;
       const cod = parseInt(customAlphabet('1234567890', 7)());
 
-      const forms = await Forms.insert({ ...req.body, cod_formulario: cod, 
-       numero_usp_professor: numero_usp_professor, numero_usp_aluno: req.userID });
+      const forms = await Forms.insert({
+        ...req.body, cod_formulario: cod,
+        numero_usp_professor: numero_usp_professor, numero_usp_aluno: req.userID
+      });
 
       return res.status(200).json(forms);
 
@@ -28,12 +30,12 @@ class FormsController {
     try {
       const getForms = await Forms.getById(req.params.id)
 
-      if(!getForms) {
+      if (!getForms) {
         return res.status(400).json({ msg: 'Forms dosent exists' });
       }
 
       return res.status(200).json(getForms);
-      
+
     } catch (error) {
       console.log(error);
       return res.status(500).json({ msg: 'internal server error' });
@@ -42,13 +44,13 @@ class FormsController {
 
   async getAll(req, res) {
     try {
-      
-      if(!isCoordinator(req.userLevel)) {
+
+      if (!isCoordinator(req.userLevel)) {
         return res.status(403).json({ msg: 'forbidden' });
       }
 
       const getAll = await Forms.getAll();
-      
+
       return res.status(200).json(getAll);
 
     } catch (error) {
