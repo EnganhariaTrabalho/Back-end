@@ -1,5 +1,7 @@
 const { isCoordinator } = require('../config/level');
+const { customAlphabet } = require('nanoid');
 const Forms = require('../models/formularioModel');
+const StudentInfo = require('../models/alunoInfosModel');
 
 
 class FormsController {
@@ -7,9 +9,15 @@ class FormsController {
 
     try {
 
-      const forms = await Forms.insert(req.body);
+      const professor = await StudentInfo.getProfessor(req.userID);
+      const numero_usp_professor = professor[0].numero_usp_professor;
+      const cod = parseInt(customAlphabet('1234567890', 7)());
+
+      const forms = await Forms.insert({ ...req.body, cod_formulario: cod, 
+       numero_usp_professor: numero_usp_professor, numero_usp_aluno: req.userID });
 
       return res.status(200).json(forms);
+
     } catch (error) {
       console.log(error);
       return res.status(500).json({ msg: 'internal server error' });
