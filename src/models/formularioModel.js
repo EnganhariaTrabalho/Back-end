@@ -18,8 +18,6 @@ module.exports = {
                    "artigo_preparacao, estagio_atual_pesquisa,congresso ,congresso_extorior, pesquisa_exterior, declaracao)" + 
                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-        console.log(query);
-
         return queryExecuter(connection, query, [
             cod_formulario, numero_usp_aluno, numero_usp_professor, 
         semestre_curso, ultima_atualizacao_do_lattes, resultado_ultima_avaliação, aprovação_obrigatorias, 
@@ -31,16 +29,20 @@ module.exports = {
     },
 
     getAll() {
-        return queryExecuter(connection, "SELECT * FROM informacoes_aluno", [])
+        return queryExecuter(connection, "SELECT * FROM formulario", [])
     },
 
-    getById(id) {
-        return queryExecuter(connection, "SELECT * FROM users WHERE id = ?", [id])
+    getStudent(numero_usp_aluno) {
+        return queryExecuter(connection, "SELECT * FROM formulario WHERE numero_usp_aluno = ?", [numero_usp_aluno])
     },
 
-    delete(id) {
+    getProfessor(numero_usp_professor) {
+        return queryExecuter(connection, "SELECT * FROM formulario WHERE numero_usp_professor = ?", [numero_usp_professor])
+    },
+
+    delete(cod_formulario) {
         try {
-            return queryExecuter(connection, "DELETE FROM users WHERE id = ?", [id]);
+            return queryExecuter(connection, "DELETE FROM formulario WHERE cod_formulario = ?", [cod_formulario]);
         } catch(e) {
             throw e;
         }
