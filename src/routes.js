@@ -15,6 +15,11 @@ routes.get('/aluno' , alunoController.index);
 
 
 routes.post('/formularios', sessionMiddlware.auth, FormularioController.store);
-//routes.get('/formularios',sessionMiddlware.auth, FormularioController.getAll);
+routes.get('/formularios/aluno', sessionMiddlware.auth, FormularioController.getStudent);
+//formaularios/editar
+routes.get('/formularios/professor',sessionMiddlware.auth, FormularioController.getProfessor);
+routes.get('/formularios', sessionMiddlware.auth, FormularioController.getAll);
+routes.delete('/formularios/:id', sessionMiddlware.auth, FormularioController.delete);
+
 
 module.exports = routes;
