@@ -28,8 +28,22 @@ module.exports = {
         ]);
     },
 
+    insertProfessor({comentario_orientador, cod_formulario}) {
+
+        return queryExecuter(connection, "UPDATE formulario SET comentario_orientador = ? WHERE cod_formulario = ?", [comentario_orientador, cod_formulario])
+    },
+    
+    insertCoordinator({comentario_coordenadoria, numero_usp_coordenadoria, cod_formulario}) {
+
+        return queryExecuter(connection, "UPDATE formulario SET comentario_coordenadoria = ?, numero_usp_coordenadoria = ?  WHERE cod_formulario = ?", [comentario_coordenadoria, numero_usp_coordenadoria, cod_formulario])
+    }, 
+
     getAll() {
         return queryExecuter(connection, "SELECT * FROM formulario", [])
+    },
+
+    getForms(cod_formulario) {
+        return queryExecuter(connection, "SELECT * FROM formulario WHERE cod_formulario = ?", [cod_formulario])
     },
 
     getStudent(numero_usp_aluno) {
