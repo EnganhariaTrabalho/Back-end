@@ -18,7 +18,9 @@ routes.post('/formularios', sessionMiddlware.auth, FormularioController.store);
 routes.get('/formularios/aluno', sessionMiddlware.auth, FormularioController.getStudent);
 //formaularios/editar
 routes.get('/formularios/professor',sessionMiddlware.auth, FormularioController.getProfessor);
+routes.post('/formularios/professor',sessionMiddlware.auth, FormularioController.storeProfessor);
 routes.get('/formularios', sessionMiddlware.auth, FormularioController.getAll);
+routes.post('/formularios/coordenacao',sessionMiddlware.auth, FormularioController.storeCoordinator);
 routes.delete('/formularios/:id', sessionMiddlware.auth, FormularioController.delete);
 routes.put('/formularios', sessionMiddlware.auth, FormularioController.updateById);
 
