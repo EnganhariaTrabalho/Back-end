@@ -51,7 +51,7 @@ class FormsController {
 
       const status = await Status.insertProfessor({ cod_formulario:forms[0].cod_formulario, status: 'Enviado para a coordenadoria',
          data: `${currenteDate.getFullYear()}-${currenteDate.getMonth() + 1}-${currenteDate.getDate()}/`, 
-         avaliacao_professor: 'Aprovado com ressalvas'});
+         avaliacao_professor: req.body.avaliacao_professor});
 
       return res.status(200).json({commentProfessor, status});
 
@@ -80,7 +80,7 @@ class FormsController {
 
       const status = await Status.insertCoordinator({ cod_formulario:forms[0].cod_formulario, status: 'Finalizado',
          data: `${currenteDate.getFullYear()}-${currenteDate.getMonth() + 1}-${currenteDate.getDate()}/`, 
-         avaliacao_coordenadoria: 'Aprovado com ressalvas'});
+         avaliacao_coordenadoria: req.body.avaliacao_coordenador});
 
       return res.status(200).json({commentCoordinator, status});
 
