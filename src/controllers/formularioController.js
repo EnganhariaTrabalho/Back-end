@@ -174,14 +174,14 @@ class FormsController {
       }
 
       const formulario = await Forms.getStudent(req.userID);
-
-      if(!getForms) {
+      let cod_forms = formulario[0].cod_formulario
+      if(!formulario) {
         return res.status(400).json({ msg: 'Forms dosent exists' });
       }
 
-      await Forms.update({...req.body});
+      await Forms.update(req.body, cod_forms);
 
-     return res.status(200).json({ msg: 'forms deleted' });
+     return res.status(200).json({ msg: 'forms updated' });
 
     } catch (error) {
       
