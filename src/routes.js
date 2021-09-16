@@ -20,6 +20,7 @@ routes.get('/formularios/aluno', sessionMiddlware.auth, FormularioController.get
 routes.get('/formularios/professor',sessionMiddlware.auth, FormularioController.getProfessor);
 routes.get('/formularios', sessionMiddlware.auth, FormularioController.getAll);
 routes.delete('/formularios/:id', sessionMiddlware.auth, FormularioController.delete);
+routes.put('/formularios', sessionMiddlware.auth, FormularioController.updateById);
 
 
 module.exports = routes;

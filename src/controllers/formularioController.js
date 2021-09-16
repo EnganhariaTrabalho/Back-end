@@ -100,6 +100,27 @@ class FormsController {
        
      }
   }
+
+  async updateById(req, res) {
+    try {
+      if(!isStudent(req.userLevel)) {
+        return res.status(403).json({ msg: 'forbidden' });
+      }
+
+      const formulario = await Forms.getStudent(req.userID);
+
+      if(!getForms) {
+        return res.status(400).json({ msg: 'Forms dosent exists' });
+      }
+
+      await Forms.update({...req.body});
+
+     return res.status(200).json({ msg: 'forms deleted' });
+
+    } catch (error) {
+      
+    }
+ }
 }
 
 module.exports = new FormsController();

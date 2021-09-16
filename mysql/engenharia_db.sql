@@ -35,7 +35,7 @@ CREATE TABLE `aluno` (
   `senha` varchar(255) NOT NULL,
   `nome_usuario` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'ALUNO'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `aluno`
@@ -66,7 +66,7 @@ CREATE TABLE `coordenadoria` (
   `nome_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'COORDENADOR'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `coordenadoria`
@@ -86,7 +86,7 @@ CREATE TABLE `formulario` (
   `numero_usp_aluno` int NOT NULL,
   `numero_usp_professor` int NOT NULL,
   `numero_usp_coordenadoria` int DEFAULT NULL,
-  `semestre_curso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `semestre_curso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ultima_atualizacao_do_lattes` date NOT NULL COMMENT 'Data da última atualização do lattes',
   `resultado_ultima_avaliação` varchar(255) NOT NULL COMMENT 'Qual foi o resultado da avaliação do seu último relatório?',
   `aprovação_obrigatorias` int NOT NULL COMMENT 'Em quantas disciplinas obrigatórias você já obteve aprovação?',
@@ -108,7 +108,7 @@ CREATE TABLE `formulario` (
   `declaracao` text NOT NULL COMMENT 'Você tem algo a mais a declarar para a CCP - PPgSI?',
   `comentario_orientador` text COMMENT 'Comentários finais do ORIENTANDO sobre seu desempenho no último semestre, considerando o relatório reapresentado:',
   `comentario_coordenadoria` text COMMENT 'Comentários finais do COORDENADORIA sobre seu desempenho no último semestre, considerando o relatório reapresentado:'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `formulario`
@@ -126,9 +126,9 @@ INSERT INTO `formulario` (`cod_formulario`, `numero_usp_aluno`, `numero_usp_prof
 CREATE TABLE `informacao_aluno` (
   `numero_usp_aluno` int NOT NULL,
   `numero_usp_professor` int NOT NULL,
-  `lattes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `lattes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `curso` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `informacao_aluno`
@@ -154,7 +154,7 @@ CREATE TABLE `professor` (
   `nome_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'PROFESSOR'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `professor`
@@ -176,7 +176,7 @@ CREATE TABLE `status` (
   `data` date NOT NULL,
   `avaliacao_professor` varchar(255) DEFAULT NULL,
   `avaliacao_coordenadoria` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices de tabelas apagadas

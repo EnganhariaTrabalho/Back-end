@@ -46,5 +46,26 @@ module.exports = {
         } catch(e) {
             throw e;
         }
+    },
+
+    update(formulario, cod_formulario) {
+        try {
+            let query  = "UPDATE formulario SET";
+            query +=" (semestre_curso = ?," + 
+                   "ultima_atualizacao_do_lattes = ?, resultado_ultima_avaliação = ?, aprovação_obrigatorias= ?, aprovação_optativas= ?," + 
+                   "conceitos= ?, disciplinas_repovadas_curso= ?, disciplinas_repovadas_semestre= ?, exame_proeficiencia= ?," + 
+                   "exame_de_qualificacao= ?,limite_max_qualificacao= ?, tempo_limete_deposito= ?, artigos_publicados= ?, artigos_espera= ?," + 
+                   "artigo_preparacao= ?, estagio_atual_pesquisa= ?,congresso = ?,congresso_extorior= ?, pesquisa_exterior= ?, declaracao= ?)" + 
+                   "WHERE cod_formulario = ?";
+            return queryExecuter(connection, query, [
+            semestre_curso, ultima_atualizacao_do_lattes, resultado_ultima_avaliação, aprovação_obrigatorias, 
+            aprovação_optativas, conceitos, disciplinas_repovadas_curso, disciplinas_repovadas_semestre, 
+            exame_proeficiencia, exame_de_qualificacao, limite_max_qualificacao, tempo_limete_deposito, 
+            artigos_publicados, artigos_espera, artigo_preparacao, estagio_atual_pesquisa, congresso, 
+            congresso_extorior, pesquisa_exterior, declaracao, cod_formulario
+            ]);
+        } catch(e) {
+            throw e;
+        }
     }
 }
