@@ -163,7 +163,8 @@ class FormsController {
       return res.status(200).json({ msg: 'forms deleted' });
 
      } catch (error) {
-       
+       console.log(error);
+       return res.status(500).json({ msg: 'internal server error' });
      }
   }
 
