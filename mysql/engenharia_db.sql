@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Tempo de geração: 06/09/2021 às 18:03
--- Versão do servidor: 8.0.26-0ubuntu0.20.04.2
--- Versão do PHP: 7.4.3
+-- Host: 127.0.0.1
+-- Tempo de geração: 19-Set-2021 às 18:56
+-- Versão do servidor: 10.4.21-MariaDB
+-- versão do PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,20 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `aluno`
+-- Estrutura da tabela `aluno`
 --
 
 CREATE TABLE `aluno` (
-  `numero_usp` int NOT NULL,
+  `numero_usp` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nome_usuario` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'ALUNO'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `aluno`
+-- Extraindo dados da tabela `aluno`
 --
 
 INSERT INTO `aluno` (`numero_usp`, `nome`, `email`, `senha`, `nome_usuario`, `nivel`) VALUES
@@ -56,20 +55,20 @@ INSERT INTO `aluno` (`numero_usp`, `nome`, `email`, `senha`, `nome_usuario`, `ni
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `coordenadoria`
+-- Estrutura da tabela `coordenadoria`
 --
 
 CREATE TABLE `coordenadoria` (
-  `numero_usp` int NOT NULL,
+  `numero_usp` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nome_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'COORDENADOR'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `coordenadoria`
+-- Extraindo dados da tabela `coordenadoria`
 --
 
 INSERT INTO `coordenadoria` (`numero_usp`, `nome`, `email`, `nome_usuario`, `senha`, `nivel`) VALUES
@@ -78,60 +77,61 @@ INSERT INTO `coordenadoria` (`numero_usp`, `nome`, `email`, `nome_usuario`, `sen
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `formulario`
+-- Estrutura da tabela `formulario`
 --
 
 CREATE TABLE `formulario` (
-  `cod_formulario` int NOT NULL,
-  `numero_usp_aluno` int NOT NULL,
-  `numero_usp_professor` int NOT NULL,
-  `numero_usp_coordenadoria` int DEFAULT NULL,
-  `semestre_curso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cod_formulario` int(11) NOT NULL,
+  `numero_usp_aluno` int(11) NOT NULL,
+  `numero_usp_professor` int(11) NOT NULL,
+  `numero_usp_coordenadoria` int(11) DEFAULT NULL,
+  `semestre_curso` varchar(255) NOT NULL,
   `ultima_atualizacao_do_lattes` date NOT NULL COMMENT 'Data da última atualização do lattes',
-  `resultado_ultima_avaliação` varchar(255) NOT NULL COMMENT 'Qual foi o resultado da avaliação do seu último relatório?',
-  `aprovação_obrigatorias` int NOT NULL COMMENT 'Em quantas disciplinas obrigatórias você já obteve aprovação?',
-  `aprovação_optativas` int NOT NULL COMMENT 'Em quantas disciplinas optativas você já obteve aprovação?',
+  `resultado_ultima_avaliacao` varchar(255) NOT NULL COMMENT 'Qual foi o resultado da avaliação do seu último relatório?',
+  `aprovacao_obrigatorias` int(11) NOT NULL COMMENT 'Em quantas disciplinas obrigatórias você já obteve aprovação?',
+  `aprovacao_optativas` int(11) NOT NULL COMMENT 'Em quantas disciplinas optativas você já obteve aprovação?',
   `conceitos` varchar(255) NOT NULL COMMENT 'Todos os conceitos em disciplinas cursadas no último semestre já foram divulgados?',
-  `disciplinas_repovadas_curso` int NOT NULL COMMENT 'Em quantas disciplinas você foi reprovado desde o início do mestrado/doutorado?',
-  `disciplinas_repovadas_semestre` int NOT NULL COMMENT 'Em quantas disciplinas você foi reprovado no último semestre cursado?',
+  `disciplinas_repovadas_curso` int(11) NOT NULL COMMENT 'Em quantas disciplinas você foi reprovado desde o início do mestrado/doutorado?',
+  `disciplinas_repovadas_semestre` int(11) NOT NULL COMMENT 'Em quantas disciplinas você foi reprovado no último semestre cursado?',
   `exame_proeficiencia` varchar(255) NOT NULL COMMENT 'Você já foi aprovado no exame de proficiência em idiomas?',
   `exame_de_qualificacao` varchar(255) NOT NULL COMMENT 'Você já realizou o exame de qualificação?',
   `limite_max_qualificacao` varchar(255) NOT NULL COMMENT 'Se não qualificou, quanto tempo falta para o limite máximo de qualificação?',
   `tempo_limete_deposito` varchar(255) NOT NULL COMMENT 'Se você já fez sua qualificação e foi aprovado, quanto tempo falta para o limite máximo do depósito da sua dissertação/tese?',
-  `artigos_publicados` int NOT NULL COMMENT 'Quantos artigos referentes a sua pesquisa de mestrado/doutorado você teve aceitos ou publicados? (Obs: Você deve inserir os artigos publicados no seu currículo Lattes)',
-  `artigos_espera` int NOT NULL COMMENT 'Quantos artigos você submeteu e ainda estão aguardando resposta?',
+  `artigos_publicados` int(11) NOT NULL COMMENT 'Quantos artigos referentes a sua pesquisa de mestrado/doutorado você teve aceitos ou publicados? (Obs: Você deve inserir os artigos publicados no seu currículo Lattes)',
+  `artigos_espera` int(11) NOT NULL COMMENT 'Quantos artigos você submeteu e ainda estão aguardando resposta?',
   `artigo_preparacao` varchar(255) NOT NULL COMMENT 'Você possui artigo em preparação para submissão? Qual o estágio dele?',
   `estagio_atual_pesquisa` text NOT NULL COMMENT 'Qual o estágio atual de sua pesquisa?',
   `congresso` text NOT NULL COMMENT 'Você participou de algum congressos no país? Se sim, indicar local, se houve apresentação de trabalho e se o congresso é ou não internacional.',
   `congresso_extorior` text NOT NULL COMMENT 'Você participou de algum congresso no exterior? Se sim, indicar local e se houve apresentação de trabalho.',
   `pesquisa_exterior` text NOT NULL COMMENT 'Você realizou algum estágio de pesquisa ou visita de pesquisa no exterior (incluindo sanduíche)? Se sim, indique o nome da universidade e o período.',
   `declaracao` text NOT NULL COMMENT 'Você tem algo a mais a declarar para a CCP - PPgSI?',
-  `comentario_orientador` text COMMENT 'Comentários finais do ORIENTANDO sobre seu desempenho no último semestre, considerando o relatório reapresentado:',
-  `comentario_coordenadoria` text COMMENT 'Comentários finais do COORDENADORIA sobre seu desempenho no último semestre, considerando o relatório reapresentado:'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `comentario_orientador` text DEFAULT NULL COMMENT 'Comentários finais do ORIENTANDO sobre seu desempenho no último semestre, considerando o relatório reapresentado:',
+  `comentario_coordenadoria` text DEFAULT NULL COMMENT 'Comentários finais do COORDENADORIA sobre seu desempenho no último semestre, considerando o relatório reapresentado:'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `formulario`
+-- Extraindo dados da tabela `formulario`
 --
 
-INSERT INTO `formulario` (`cod_formulario`, `numero_usp_aluno`, `numero_usp_professor`, `numero_usp_coordenadoria`, `semestre_curso`, `ultima_atualizacao_do_lattes`, `resultado_ultima_avaliação`, `aprovação_obrigatorias`, `aprovação_optativas`, `conceitos`, `disciplinas_repovadas_curso`, `disciplinas_repovadas_semestre`, `exame_proeficiencia`, `exame_de_qualificacao`, `limite_max_qualificacao`, `tempo_limete_deposito`, `artigos_publicados`, `artigos_espera`, `artigo_preparacao`, `estagio_atual_pesquisa`, `congresso`, `congresso_extorior`, `pesquisa_exterior`, `declaracao`, `comentario_orientador`, `comentario_coordenadoria`) VALUES
-(1223333, 101, 333333333, NULL, '2', '2010-09-20', 'aprovado', 10, 12, 'conceito', 10, 10, 'sim', 'nao', 'sim', '12', 2, 12, '222', 'aasasasassaasasasasasasassdfafsdf', 'skdhakjdnscmaskcnaskcbalkjaslcjkbaslcbALCN', 'KXKASHDKASJDKASJDASJDHASKJDASDAS', 'lksjaoshdoaskdsakjdsdjkadskjhaskdasd', 'sakdnoasihdlasdhkasjkjsdsjdas', NULL, NULL);
+INSERT INTO `formulario` (`cod_formulario`, `numero_usp_aluno`, `numero_usp_professor`, `numero_usp_coordenadoria`, `semestre_curso`, `ultima_atualizacao_do_lattes`, `resultado_ultima_avaliacao`, `aprovacao_obrigatorias`, `aprovacao_optativas`, `conceitos`, `disciplinas_repovadas_curso`, `disciplinas_repovadas_semestre`, `exame_proeficiencia`, `exame_de_qualificacao`, `limite_max_qualificacao`, `tempo_limete_deposito`, `artigos_publicados`, `artigos_espera`, `artigo_preparacao`, `estagio_atual_pesquisa`, `congresso`, `congresso_extorior`, `pesquisa_exterior`, `declaracao`, `comentario_orientador`, `comentario_coordenadoria`) VALUES
+(1223333, 101, 333333333, NULL, '1', '1996-10-05', '1', 2, 2, '2', 2, 2, '2', '2', '2', '2', 2, 2, '2', '2', '2', '2', '2', '2', NULL, NULL),
+(3439160, 222222222, 333333333, NULL, '', '0000-00-00', '', 0, 0, '', 0, 0, '', '', '', '', 0, 0, '', '', '', '', '', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `informacao_aluno`
+-- Estrutura da tabela `informacao_aluno`
 --
 
 CREATE TABLE `informacao_aluno` (
-  `numero_usp_aluno` int NOT NULL,
-  `numero_usp_professor` int NOT NULL,
-  `lattes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `numero_usp_aluno` int(11) NOT NULL,
+  `numero_usp_professor` int(11) NOT NULL,
+  `lattes` varchar(255) NOT NULL,
   `curso` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `informacao_aluno`
+-- Extraindo dados da tabela `informacao_aluno`
 --
 
 INSERT INTO `informacao_aluno` (`numero_usp_aluno`, `numero_usp_professor`, `lattes`, `curso`) VALUES
@@ -139,25 +139,27 @@ INSERT INTO `informacao_aluno` (`numero_usp_aluno`, `numero_usp_professor`, `lat
 (1010149, 333333333, 'http//', 'mestrado'),
 (101014912, 333333333, 'http//', 'mestrado'),
 (10101, 333333333, 'http//', 'mestrado'),
-(101, 333333333, 'http//', 'mestrado');
+(101, 333333333, 'http//', 'mestrado'),
+(222222222, 333333333, 'http//', 'mestrado'),
+(222222222, 333333333, 'http//', 'mestrado');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `professor`
+-- Estrutura da tabela `professor`
 --
 
 CREATE TABLE `professor` (
-  `numero_usp` int NOT NULL,
+  `numero_usp` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nome_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `nivel` varchar(255) NOT NULL DEFAULT 'PROFESSOR'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `professor`
+-- Extraindo dados da tabela `professor`
 --
 
 INSERT INTO `professor` (`numero_usp`, `nome`, `email`, `nome_usuario`, `senha`, `nivel`) VALUES
@@ -166,36 +168,43 @@ INSERT INTO `professor` (`numero_usp`, `nome`, `email`, `nome_usuario`, `senha`,
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `status`
+-- Estrutura da tabela `status`
 --
 
 CREATE TABLE `status` (
-  `cod_status` int NOT NULL,
-  `cod_formulario` int NOT NULL,
+  `cod_status` int(11) NOT NULL,
+  `cod_formulario` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `data` date NOT NULL,
   `avaliacao_professor` varchar(255) DEFAULT NULL,
   `avaliacao_coordenadoria` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices de tabelas apagadas
+-- Extraindo dados da tabela `status`
+--
+
+INSERT INTO `status` (`cod_status`, `cod_formulario`, `status`, `data`, `avaliacao_professor`, `avaliacao_coordenadoria`) VALUES
+(3560793, 3439160, 'Enviado para o professor', '2021-09-19', '', '');
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `aluno`
+-- Índices para tabela `aluno`
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`numero_usp`);
 
 --
--- Índices de tabela `coordenadoria`
+-- Índices para tabela `coordenadoria`
 --
 ALTER TABLE `coordenadoria`
   ADD PRIMARY KEY (`numero_usp`);
 
 --
--- Índices de tabela `formulario`
+-- Índices para tabela `formulario`
 --
 ALTER TABLE `formulario`
   ADD PRIMARY KEY (`cod_formulario`),
@@ -204,40 +213,40 @@ ALTER TABLE `formulario`
   ADD KEY `fk_aluno_info_formulario` (`numero_usp_aluno`);
 
 --
--- Índices de tabela `informacao_aluno`
+-- Índices para tabela `informacao_aluno`
 --
 ALTER TABLE `informacao_aluno`
   ADD KEY `numero_usp_aluno` (`numero_usp_aluno`),
   ADD KEY `numero_usp_professor` (`numero_usp_professor`);
 
 --
--- Índices de tabela `professor`
+-- Índices para tabela `professor`
 --
 ALTER TABLE `professor`
   ADD PRIMARY KEY (`numero_usp`);
 
 --
--- Índices de tabela `status`
+-- Índices para tabela `status`
 --
 ALTER TABLE `status`
   ADD KEY `fk_formulario_info_status` (`cod_formulario`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `formulario`
 --
 ALTER TABLE `formulario`
-  MODIFY `cod_formulario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1223334;
+  MODIFY `cod_formulario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3439161;
 
 --
--- Restrições para dumps de tabelas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `formulario`
+-- Limitadores para a tabela `formulario`
 --
 ALTER TABLE `formulario`
   ADD CONSTRAINT `fk_aluno_info_formulario` FOREIGN KEY (`numero_usp_aluno`) REFERENCES `aluno` (`numero_usp`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -245,17 +254,17 @@ ALTER TABLE `formulario`
   ADD CONSTRAINT `fk_professor_info_formulario` FOREIGN KEY (`numero_usp_professor`) REFERENCES `professor` (`numero_usp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `informacao_aluno`
+-- Limitadores para a tabela `informacao_aluno`
 --
 ALTER TABLE `informacao_aluno`
-  ADD CONSTRAINT `numero_usp_aluno` FOREIGN KEY (`numero_usp_aluno`) REFERENCES `aluno` (`numero_usp`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `numero_usp_professor` FOREIGN KEY (`numero_usp_professor`) REFERENCES `professor` (`numero_usp`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `numero_usp_aluno` FOREIGN KEY (`numero_usp_aluno`) REFERENCES `aluno` (`numero_usp`),
+  ADD CONSTRAINT `numero_usp_professor` FOREIGN KEY (`numero_usp_professor`) REFERENCES `professor` (`numero_usp`);
 
 --
--- Restrições para tabelas `status`
+-- Limitadores para a tabela `status`
 --
 ALTER TABLE `status`
-  ADD CONSTRAINT `fk_formulario_info_status` FOREIGN KEY (`cod_formulario`) REFERENCES `formulario` (`cod_formulario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_formulario_info_status` FOREIGN KEY (`cod_formulario`) REFERENCES `formulario` (`cod_formulario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
