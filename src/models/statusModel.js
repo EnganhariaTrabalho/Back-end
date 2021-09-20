@@ -12,6 +12,9 @@ module.exports = {
 
   insertCoordinator({status, data, avaliacao_coordenadoria, cod_formulario}) {
      return queryExecuter(connection, "UPDATE status SET status = ?, data = ?, avaliacao_coordenadoria = ? WHERE cod_formulario = ?", [status, data, avaliacao_coordenadoria, cod_formulario])
-  }
+  },
 
+  get(cod_formulario) {
+    return queryExecuter(connection, "SELECT * FROM status WHERE cod_formulario = ?", [cod_formulario]);
+  }
 }

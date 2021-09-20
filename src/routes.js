@@ -4,6 +4,7 @@ const routes = Router();
 const alunoController = require('./controllers/alunoController');
 const FormularioController = require('./controllers/formularioController');
 const sessionController = require('./controllers/sessionController');
+const statusController = require('./controllers/statusController');
 
 const sessionMiddlware = require('./middleware/auth');
 
@@ -23,6 +24,8 @@ routes.get('/formularios', sessionMiddlware.auth, FormularioController.getAll);
 routes.post('/formularios/coordenacao',sessionMiddlware.auth, FormularioController.storeCoordinator);
 routes.delete('/formularios/:id', sessionMiddlware.auth, FormularioController.delete);
 routes.put('/formularios', sessionMiddlware.auth, FormularioController.updateById);
+
+routes.get('/status', sessionMiddlware.auth, statusController.get);
 
 
 module.exports = routes;
