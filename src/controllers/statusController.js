@@ -31,6 +31,40 @@ class StatusController {
       return res.status(500).json({ msg: 'internal server error' });
     }
   }
+
+  async insertProfessor(req, res) {
+    if(!isProfessor(req.userLevel)) {
+       return res.status(403).json({ msg: 'forbidden' });
+    }
+
+    try {
+      
+      const currenteDate = new Date();
+      const status = await Status.performanceProfessor({...req.body, data: `${currenteDate.getFullYear()}-${currenteDate.getMonth() + 1}-${currenteDate.getDate()}`});
+
+      return res.status(200).json(status)
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ msg: 'internal server error' });
+    }
+  }
+
+  async insertCoordinator(req, res) {
+    if(!isCoordinator(req.userLevel)) {
+       return res.status(403).json({ msg: 'forbidden' });
+    }
+
+    try {
+      
+      const currenteDate = new Date();
+      const status = await Status.performanceCoordinator({...req.body, data: `${currenteDate.getFullYear()}-${currenteDate.getMonth() + 1}-${currenteDate.getDate()}`});
+
+      return res.status(200).json(status)
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ msg: 'internal server error' });
+    }
+  }
 }
 
 module.exports = new StatusController();

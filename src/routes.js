@@ -25,7 +25,10 @@ routes.post('/formularios/coordenacao',sessionMiddlware.auth, FormularioControll
 routes.delete('/formularios/:id', sessionMiddlware.auth, FormularioController.delete);
 routes.put('/formularios', sessionMiddlware.auth, FormularioController.updateById);
 
+//status
 routes.get('/status', sessionMiddlware.auth, statusController.get);
+routes.post('/status/professor', sessionMiddlware.auth, statusController.insertProfessor);
+routes.post('/status/coordenador', sessionMiddlware.auth, statusController.insertCoordinator);
 
 
 module.exports = routes;
