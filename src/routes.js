@@ -27,8 +27,8 @@ routes.put('/formularios', sessionMiddlware.auth, FormularioController.updateByI
 
 //status
 routes.get('/status', sessionMiddlware.auth, statusController.get);
-routes.post('/status/professor', sessionMiddlware.auth, statusController.insertProfessor);
-routes.post('/status/coordenador', sessionMiddlware.auth, statusController.insertCoordinator);
+routes.put('/status/professor', sessionMiddlware.auth, statusController.insertProfessor);
+routes.put('/status/coordenador', sessionMiddlware.auth, statusController.insertCoordinator);
 
 
 module.exports = routes;
